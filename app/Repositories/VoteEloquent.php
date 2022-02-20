@@ -9,6 +9,7 @@ use App\Models\UserVote;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class VoteEloquent
 {
@@ -77,6 +78,8 @@ class VoteEloquent
             'company' => $data['company'],
             'start_at' => $data['start_at'],
             'end_at' => $data['end_at'],
+            'qr_code' => 0,
+            'qr_img' => null,
             'is_active' => 1,
             'type' => 'public',
         ]);
@@ -94,6 +97,16 @@ class VoteEloquent
             'vote_id' => $vote->id,
 
         ]);
+        $qr=QrCode::size(500)
+            ->format('png')
+            ->generate('qr.com', public_path('images/qrcode.png'));
+        dd($qr);
+        $myvote = Vote::find($vote->id);
+        $myvote->qr_code = $qr;
+        $myvote->qr_img = $qr;
+
+        $myvote->save();
+
 
         return Redirect::back()->withErrors(['Added Successfully', 'The Message']);
     }

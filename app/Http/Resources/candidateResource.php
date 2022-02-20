@@ -19,7 +19,11 @@ class candidateResource extends JsonResource
         $candite_count = $this->UserVotes()->count();
 
         $total_vote = $request->get('total_vote');
-        $prec = ($candite_count/$total_vote) *100.0;
+
+        $prec = 0;
+        if ($total_vote>1){
+            $prec = ($candite_count/$total_vote) *100.0;
+        }
 
         return [
             'id' => $this->id,

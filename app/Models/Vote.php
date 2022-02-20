@@ -16,7 +16,9 @@ class Vote extends Model
         'start_at',
         'end_at',
         'is_active',
+        'qr_code',
         'type',
+        'qr_img',
     ];
     public function Candidates()
     {
