@@ -22,7 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/vote', [VoteController::class, 'display'])->name('vote');
+    Route::get('votes', [VoteController::class, 'index']);
+    Route::get('votes/list', [VoteController::class, 'getVote'])->name('votes.list');
     Route::get('/candidates/{vote_id}', [VoteController::class, 'candidates'])->name('candidates');
 
     Route::get('/vote/add', [VoteController::class, 'new']);

@@ -8,6 +8,7 @@ use App\Models\Vote;
 use App\Repositories\VoteEloquent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Yajra\DataTables\DataTables;
 
 class VoteController extends Controller
 {
@@ -16,10 +17,27 @@ class VoteController extends Controller
         $this->vote = $voteEloquent;
     }
 
-    public function display()
+//    public function display(Request $request)
+//    {
+//        return $this->vote->display($request->all());
+//
+//    }
+    public function index()
     {
-        return $this->vote->display();
+        return $this->vote->index();
+    }
 
+    public function getVote(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Vote::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '<a href="" class="edit btn btn-success btn-sm">Edit</a>
+ <a href="/vote/delete/id" class="delete btn btn-danger btn-sm">Delete</a>';
+                })->make(true);
+        }
     }
 
     public function candidates($vote_id)

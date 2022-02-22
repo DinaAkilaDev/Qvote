@@ -51,6 +51,8 @@
 <script src="{{ URL::to('../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}" type="text/javascript"></script>
+@yield('js')
+
 <script src="{{ URL::to('../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/pages/scripts/dashboard.min.js') }}" type="text/javascript"></script>
@@ -58,7 +60,6 @@
 <script src="{{ URL::to('../assets/layouts/layout2/scripts/demo.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::to('../assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::to('../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
 
-<script src="{{ URL::to('../assets/global/scripts/datatable.js') }}" type="text/javascript"></script>
-<script src="{{ URL::to('../assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::to('../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}" type="text/javascript"></script>
+@stack('js')

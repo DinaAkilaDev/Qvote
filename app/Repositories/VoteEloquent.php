@@ -10,6 +10,7 @@ use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Yajra\DataTables\DataTables;
 
 class VoteEloquent
 {
@@ -51,11 +52,12 @@ class VoteEloquent
 
     }
 
-    public function display()
+    public function index()
     {
-        $vote = Vote::paginate(10);
-        return view('vote')->with('vote', $vote);
+        return view('vote');
+
     }
+
 
     public function candidates($vote_id)
     {
@@ -99,7 +101,7 @@ class VoteEloquent
         ]);
         $qr=QrCode::size(500)
             ->format('png')
-            ->generate('qr.com', public_path('images/qrcode.png'));
+            ->generate('qr.com', public_path('storage\qrcode.png'));
         dd($qr);
         $myvote = Vote::find($vote->id);
         $myvote->qr_code = $qr;

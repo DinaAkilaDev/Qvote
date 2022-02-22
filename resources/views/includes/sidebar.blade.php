@@ -10,8 +10,8 @@
                     <span class="arrow open"></span>
                 </a>
             </li>
-            <li class="nav-item  @if(preg_match('/vote/i',url()->current())) start active open @endif">
-                <a href="{{url('/vote')}}" class="nav-link nav-toggle">
+            <li class="nav-item  @if(preg_match('/votes/i',url()->current())) start active open @endif">
+                <a href="{{url('/votes')}}" class="nav-link nav-toggle">
                     <i class="icon-briefcase"></i>
                     <span class="title">Vote</span>
                     <span class="arrow"></span>
